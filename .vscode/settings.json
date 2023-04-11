@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "ejemplo": "c"
-    }
+        "ejemplo": "c",
+        "ex": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

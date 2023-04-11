@@ -1,46 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdescalz <mdescalz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 17:03:28 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/04/11 11:25:22 by mdescalz         ###   ########.fr       */
+/*   Created: 2023/04/09 17:13:11 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/04/09 17:17:17 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
-
-void	ft_putchar(char c)
+/*#include <unistd.h>
+#include <stdio.h>*/
+int	ft_str_is_uppercase(char *str)
 {
-	write (1, &c, 1);
-}
+	int	i;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
-		write (1, "-2147483648", 11);
-	else
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (nb < 0)
-		{
-			ft_putchar('-');
-			nb = -nb;
-		}
-		if (nb >= 10)
-		{
-			ft_putnbr(nb / 10);
-			nb = nb % 10;
-		}
-		if (nb < 10)
-		{
-			ft_putchar(nb + 48);
-		}
+		if (str[i] >= 65 && str[i] <= 90)
+			i++;
+		else
+			return (0);
 	}
+	return (1);
 }
-/*
-int	main(void)
+/*int main(void)
 {
-	ft_putnbr(-2147483648);
+    char    source[] = "aB";
+    printf("%d", ft_str_is_uppercase(source));
 }*/

@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdescalz <mdescalz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 17:03:28 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/04/11 11:25:22 by mdescalz         ###   ########.fr       */
+/*   Created: 2023/04/10 13:09:58 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/04/11 10:07:26 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	write (1, &c, 1);
-}
+	unsigned int	i;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
-		write (1, "-2147483648", 11);
-	else
+	i = 0;
+	while (i < n -1)
 	{
-		if (nb < 0)
-		{
-			ft_putchar('-');
-			nb = -nb;
-		}
-		if (nb >= 10)
-		{
-			ft_putnbr(nb / 10);
-			nb = nb % 10;
-		}
-		if (nb < 10)
-		{
-			ft_putchar(nb + 48);
-		}
+		if (s1[i] - s2[i] > 0)
+			return (s1[i] - s2[i]);
+		if (s1[i] - s2[i] < 0)
+			return (s1[i] - s2[i]);
+		i++;
 	}
+	return (s2[i] - s1[i]);
 }
-/*
+
 int	main(void)
 {
-	ft_putnbr(-2147483648);
-}*/
+	char	string1[] = "zaaaaaaaa";
+	char	string2[] = "zaaaaaaaa";
+	unsigned	int number;
+
+	number = 10;
+	printf("%d", ft_strncmp(string1, string2, number));
+}

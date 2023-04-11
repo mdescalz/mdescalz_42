@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdescalz <mdescalz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 17:03:28 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/04/11 11:25:22 by mdescalz         ###   ########.fr       */
+/*   Created: 2023/04/10 13:10:36 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/04/11 14:57:23 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+char	*ft_strcat(char *dest, char *src)
 {
-	write (1, &c, 1);
-}
+	int	i;
+	int	j;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
-		write (1, "-2147483648", 11);
-	else
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
 	{
-		if (nb < 0)
-		{
-			ft_putchar('-');
-			nb = -nb;
-		}
-		if (nb >= 10)
-		{
-			ft_putnbr(nb / 10);
-			nb = nb % 10;
-		}
-		if (nb < 10)
-		{
-			ft_putchar(nb + 48);
-		}
+		i++;
 	}
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
-/*
+
 int	main(void)
 {
-	ft_putnbr(-2147483648);
-}*/
+	char	destination[50] = "Hello ";
+	char 	source [] = "World";
+	printf("%s \n", ft_strcat(destination, source));
+	printf("%s \n", destination);
+}
