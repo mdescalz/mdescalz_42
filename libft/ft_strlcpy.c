@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/18 10:27:40 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/09/18 11:14:58 by mdescalz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*The strlcpy() function copies up to size - 1 characters 
 from the NUL-terminated string src to dst, NUL-terminating the result.*/
 
@@ -6,7 +18,7 @@ from the NUL-terminated string src to dst, NUL-terminating the result.*/
 size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size)
 {
 	size_t	i;
-	size_t src_len;
+	size_t	src_len;
 
 	src_len = 0;
 	while (src[src_len])
