@@ -10,7 +10,8 @@ SRC_FILES = ft_isalnum.c\
 			ft_toupper.c\
 			ft_strlen.c \
 			ft_strlcpy.c\
-			ft_strlcat.c
+			ft_strlcat.c\
+			ft_memset.c
 
 OBJECTS = $(SRC_FILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:28:29 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/18 13:50:37 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:43:46 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	ft_toupper(int arg);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif
