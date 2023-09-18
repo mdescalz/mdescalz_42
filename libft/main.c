@@ -2,12 +2,12 @@
 
 int	main(void)
 {
-	char 	source [50] = "Hellofeg34tf";
-	char	destination [50] = "Everyone";
+	char 	source [50] = "Hello ";
+	char	destination [50] = "World";
 	size_t	destination_size;
 
-	destination_size = 8;
+	destination_size = 5;
 
-	printf("%zu \n", ft_strlcpy(destination, source, destination_size));
+	printf("%zu \n", ft_strlcat(destination, source, destination_size));
 	printf("%s", destination);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdescalz <mdescalz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:27:51 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/18 10:27:53 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:44:25 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ and returns its length.*/
 
 #include "libft.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
