@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 10:27:40 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/19 12:02:46 by mdescalz         ###   ########.fr       */
+/*   Created: 2023/09/19 12:24:37 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/09/19 12:48:42 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*The strlcpy() function copies up to size - 1 characters 
-from the NUL-terminated string src to dst, NUL-terminating the result.*/
+/*The memcpy() function copies n bytes
+from memory area src to memory area dest
+The	memcpy(void) function returns a pointer to dest.*/
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	src_len;
+	unsigned const char	*source;
+	unsigned char		*dest;
+	size_t				i;
 
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	if (dst_size == 0)
-		return (src_len);
 	i = 0;
-	if (dst_size != 0)
+	source = src;
+	dest = dst;
+	while (dst == src || n == 0)
+		return (dest);
+	while (i < n)
 	{
-		while (src[i] && i < (dst_size - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		dest[i] = source[i];
+		i++;
 	}
-	return (src_len);
+	return (dest);
 }

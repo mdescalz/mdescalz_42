@@ -2,12 +2,12 @@
 
 int	main(void)
 {
-	char 	source [50] = "Hello ";
+	char 	source [50] = "Hello World";
 	char	destination [50] = "World";
-	size_t	destination_size;
+	size_t	number;
 
-	destination_size = 5;
+	number = 2;
 
-	printf("%zu \n", ft_strlcat(destination, source, destination_size));
+	printf("%zu \n", ft_memmove(destination, source, number));
 	printf("%s", destination);
 }
