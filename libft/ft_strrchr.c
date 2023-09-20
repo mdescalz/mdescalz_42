@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:00:09 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 14:18:50 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:20:54 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ of the character c in the string s.*/
 char	*ft_strrchr(const char *str, int c)
 {
 	char	*null;
-	int	length;
+	int		length;
 
 	null = NULL;
 	length = ft_strlen(str);

@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:27:51 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 13:27:02 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:22:08 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-

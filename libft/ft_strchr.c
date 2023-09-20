@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:12:44 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 14:09:02 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:21:36 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ the terminator.*/
 
 char	*ft_strchr(const char *str, int c)
 {
-	int	i;
+	int		i;
 	char	*null;
 
 	null = NULL;
