@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdescalz <mdescalz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:39:59 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/19 11:18:12 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:55:22 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*The memset() function fills the first n bytes
-of the memory area pointed to by s with the constant byte c
+
+/*The memset() function fills the first n bytes of the 
+memory area pointed to by s with the constant byte 
 function returns a pointer to the memory area s.*/
 
 #include "libft.h"
