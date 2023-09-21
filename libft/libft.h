@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:28:29 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 13:02:37 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/21 11:19:03 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t n);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
+int	ft_strncmp(const char *str1, const char *str2, size_t n);
 
 #endif
