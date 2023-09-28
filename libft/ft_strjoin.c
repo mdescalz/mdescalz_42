@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:10:33 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 13:19:55 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:22:16 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ NULL if the allocation fails.*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *ptr;
-	size_t i;
-	size_t j;
+	char	*ptr;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
