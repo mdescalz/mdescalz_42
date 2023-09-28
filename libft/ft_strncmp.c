@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 10:43:59 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/22 12:21:29 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:14:42 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ the first (at most) n bytes of s1 and s2.*/
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
 	i = 0;
-	while (str1[i] && str2[i] && i < n
-		&& (unsigned char)str1[i] == (unsigned char)str2[i])
+	ptr1 = (unsigned char *)str1;
+	ptr2 = (unsigned char *)str2;
+	while (ptr1[i] && ptr2[i] && i < n && ptr1[i] == ptr2[i])
 		i++;
 	if (i < n)
-		return (((unsigned char)str1[i] - (unsigned char)str2[i]));
+		return ((ptr1[i] - ptr2[i]));
 	else
 		return (0);
 }

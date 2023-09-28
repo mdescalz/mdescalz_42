@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:12:44 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/21 12:36:28 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:07:39 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,23 @@ the terminator.*/
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int character)
 {
 	int		i;
+	char	*ptr;
+	char	c;
 
 	i = 0;
+	ptr = (char *)str;
+	c = (char)character;
 	while (str[i])
 	{
-		if (str[i] == (char)c)
-			return ((char *)(str + i));
+		if (ptr[i] == c)
+			return (ptr + i);
 		else
 			i++;
 	}
-	if (str[i] == (char)c)
-		return ((char *)(str + i));
+	if (ptr[i] == c)
+		return (ptr + i);
 	return (NULL);
 }
