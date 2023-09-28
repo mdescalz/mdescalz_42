@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:28:29 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 11:33:15 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:38:04 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *str);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
