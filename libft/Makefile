@@ -26,7 +26,9 @@ SRC_FILES = ft_isalnum.c\
 			ft_strdup.c\
 			ft_substr.c\
 			ft_strjoin.c\
-			ft_strtrim.c
+			ft_strtrim.c\
+			ft_substr.c\
+			ft_split.c
 
 OBJECTS = $(SRC_FILES:.c=.o)
 
