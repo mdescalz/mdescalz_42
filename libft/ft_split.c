@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:21:32 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/29 13:21:54 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:24:53 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ char	**ft_split(char const *s, char c)
 			index = i;
 		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
 		{
-			split[j++] = ft_substr(s, index, i - index);
+			split[j] = ft_substr(s, index, i - index);
 			index = -1;
+			j++;
 		}
 		i++;
 	}
