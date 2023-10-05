@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:55:43 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 12:57:22 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/05 10:43:04 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 {
 	unsigned const char	*source;
 	unsigned char		*dest;
-	size_t				i;
 
-	i = 0;
 	source = src;
 	dest = dst;
 	if (dst == src || n == 0)

@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:21:32 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/29 13:24:53 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:38:30 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@ int	ft_count_strings(char const *s, char c)
 {
 	int		check;
 	size_t	count;
-	size_t	i;
 
 	count = 0;
-	i = 0;
 	check = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] != c && check == 0)
+		if (*s != c && check == 0)
 		{
 			check = 1;
 			count++;
 		}
-		else if (s[i] == c && check == 1)
+		else if (*s == c && check == 1)
 		{
 			check = 0;
 		}
-		i++;
+		s++;
 	}
 	return (count);
 }
@@ -40,7 +38,7 @@ int	ft_count_strings(char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	int		index;
+	int		check;
 	size_t	i;
 	size_t	j;
 
@@ -49,15 +47,15 @@ char	**ft_split(char const *s, char c)
 	split = malloc((ft_count_strings(s, c) + 1) * sizeof(char *));
 	if (!s || !split)
 		return (NULL);
-	index = -1;
+	check = -1;
 	while (i <= ft_strlen(s))
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		if (s[i] != c && check < 0)
+			check = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && check >= 0)
 		{
-			split[j] = ft_substr(s, index, i - index);
-			index = -1;
+			split[j] = ft_substr(s, check, i - check);
+			check = -1;
 			j++;
 		}
 		i++;

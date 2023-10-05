@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:10:33 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 13:22:16 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:46:01 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,26 @@ NULL if the allocation fails.*/
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
-	size_t	i;
-	size_t	j;
+	char	*result;
 
-	i = 0;
-	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
 	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!ptr)
 		return (NULL);
-	while (s1[i])
+	result = ptr;
+	while (*s1)
 	{
-		ptr[i] = s1[i];
-		i++;
+		*ptr = *s1;
+		ptr++;
+		s1++;
 	}
-	while (s2[j])
+	while (*s2)
 	{
-		ptr[i] = s2[j];
-		i++;
-		j++;
+		*ptr = *s2;
+		ptr++;
+		s2++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	*ptr = '\0';
+	return (result);
 }

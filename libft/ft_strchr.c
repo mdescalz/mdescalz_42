@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:12:44 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 11:07:39 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:41:58 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,19 @@ the terminator.*/
 
 char	*ft_strchr(const char *str, int character)
 {
-	int		i;
 	char	*ptr;
 	char	c;
 
-	i = 0;
 	ptr = (char *)str;
 	c = (char)character;
-	while (str[i])
+	while (*ptr)
 	{
-		if (ptr[i] == c)
-			return (ptr + i);
+		if (*ptr == c)
+			return (ptr);
 		else
-			i++;
+			ptr++;
 	}
-	if (ptr[i] == c)
-		return (ptr + i);
+	if (*ptr == c)
+		return (ptr);
 	return (NULL);
 }

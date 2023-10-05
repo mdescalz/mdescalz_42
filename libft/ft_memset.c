@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:39:59 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/20 12:55:22 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:26:39 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	a = s;
 	i = 0;
-	while (i < n)
+	while (n--)
 	{
-		a[i] = c;
-		i++;
+		*a = c;
+		a++;
 	}
-	return (a);
+	return (s);
 }
