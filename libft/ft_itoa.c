@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:00:16 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/05 13:41:19 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:30:46 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,64 @@ The string representing the integer. NULL if the allocation fails.*/
 
 #include "libft.h"
 
-long    ft_intlen(int n)
+int ft_intlen(long nb)
 {
-    long    count;
+    int count;
 
     count = 0;
-    while (n > 0)
+    if (nb < 0)
+        nb = -nb;
+    while (nb > 0)
     {
-        n = n / 10;
+        nb = nb / 10;
         count++;
     }
     return (count);
 }
 
+char    *ft_convert(long nb, char *ptr, int intlen)
+{
+    int result;
+    int is_negative;
+
+    is_negative = 1;
+    if (nb > 0)
+        ptr[intlen] = '\0';
+    if (nb < 0)
+    {
+        is_negative = 0;
+        ptr[intlen + 1] = '\0';
+        ptr[0] = '-';
+        nb = -nb;
+    }
+    while (intlen != 0)
+    {
+        result = (nb % 10);
+        ptr[intlen - is_negative] = result + 48;
+        nb = nb / 10;
+        intlen--;
+    }
+    return (ptr);
+}
 char    *ft_itoa(int n)
 {
     char    *ptr;
     long    nb;
-    size_t    i;
-    long    intlen;
+    int intlen;
 
     nb = n;
-    i = 0;
     intlen = ft_intlen(nb);
-    ptr = (char *)malloc(ft_intlen(nb) + 1);
-    if (nb < 0)
-        nb = -nb;
-    if (nb < 10)
-        ptr[i] = nb + 48;
-    if (nb >= 10)
+    if (nb == 0)
+        return (ft_strdup("0"));
+    ptr = (char *)malloc(intlen + 2);
+    if (!ptr)
+        return (NULL);
+    if (nb > 0 && nb < 10)
     {
-        while (intlen != 0)
-        {
-            i = (nb % 10);
-            ptr[intlen - 1] = i + 48;
-            nb = nb / 10;
-            intlen--;
-        }
-    }
-    return (ptr);
-}
-
-int    main(void)
-{
-    printf("String converted is  %s", ft_itoa(135));
+        ptr[0] = nb + 48;
+        ptr[1] = '\0';
+        return (ptr);
+   }
+    else
+        return ((ft_convert(nb, ptr, intlen)));
 }
