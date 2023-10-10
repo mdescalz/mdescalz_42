@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:00:16 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/10 10:57:05 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:25:23 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ char	*ft_itoa(int n)
 	intlen = ft_intlen(nb);
 	if (nb == 0)
 		return (ft_strdup("0"));
-	ptr = (char *)malloc(intlen + 2);
+	if (nb < 0)
+		ptr = (char *)malloc(intlen + 2);
+	else
+		ptr = (char *)malloc(intlen + 1);
 	if (!ptr)
 		return (NULL);
 	if (nb > 0 && nb < 10)
