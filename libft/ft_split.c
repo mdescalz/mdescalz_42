@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:21:32 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/11 12:12:35 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:11:16 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 0;
 	split = malloc((ft_count_strings(s, c) + 1) * sizeof(char *));
 	if (!s || !split)
 		return (NULL);
+	i = 0;
+	j = 0;
 	check = -1;
 	while (i <= ft_strlen(s))
 	{
