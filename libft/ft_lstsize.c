@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:10:48 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/10 12:40:09 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:20:26 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	size_t	count;
 
 	count = 0;
-	while (lst != NULL)
+	while (lst)
 	{
 		lst = lst->next;
 		count++;

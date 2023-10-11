@@ -6,8 +6,10 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:10:43 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/10 11:11:23 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:24:14 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
