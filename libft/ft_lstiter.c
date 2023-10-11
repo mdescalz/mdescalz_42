@@ -6,9 +6,13 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:10:38 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/11 11:22:47 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:01:56 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*Iterates the list ’lst’ and applies’f’ on the content of each node.
+lst: The address of a pointer to a node.
+f: The address of the function used to iterate on the list.*/
 
 #include "libft.h"
 
