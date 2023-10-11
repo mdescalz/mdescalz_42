@@ -6,9 +6,15 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:31:45 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 15:29:25 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:12:43 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*Allocates (with malloc(3)) and returns a copy of ’s1’ with the characters 
+specified in ’set’ removed from the beginning and the end of the string.
+s1:  The string to be trimmed.
+set:  The reference set of characters to trim.
+Return value: The trimmed string || NULL if the allocation fails.*/
 
 #include "libft.h"
 

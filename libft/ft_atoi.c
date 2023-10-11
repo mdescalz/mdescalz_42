@@ -6,9 +6,13 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:11:44 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/05 11:24:11 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:16:40 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*Converts the string argument str to an integer (type int).
+Return Value: This function returns the converted integral number 
+as an int value. If no valid conversion could be performed, it returns zero.*/
 
 #include "libft.h"
 

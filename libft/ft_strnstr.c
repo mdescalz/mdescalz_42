@@ -6,17 +6,16 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:56:23 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/09/28 11:18:44 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:12:41 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*The strnstr() function locates the first	occurrence of the  null-termi-
 nated  string little in the string big, where not more than len charac-
 ters are	searched.  Characters that appear after	a `\0'	character  are
-not  searched. If little is an empty string,
-big is returned; if little	occurs nowhere
-in big, NULL is returned; otherwise a pointer to the first character of
-the first occurrence of little is returned.*/
+not  searched. If little is an empty string, big is returned;  if little 
+occurs nowhere in big, NULL is returned; otherwise a pointer to the first 
+character of the first occurrence of little is returned.*/
 
 #include "libft.h"
 

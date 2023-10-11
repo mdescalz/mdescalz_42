@@ -6,9 +6,13 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:48:53 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/09 18:57:03 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:13:29 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*Outputs the integer ’n’ to the given file descriptor.
+n:  The integer to output.
+fd:  The file descriptor on which to write.*/
 
 #include "libft.h"
 
