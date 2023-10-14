@@ -6,12 +6,12 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:21:32 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/11 15:11:16 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:20:05 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Allocates (with malloc(3)) and returns an array of strings obtained by 
-splitting ’s’ using the character ’c’ as a delimiter.  
+/*Allocates (with malloc(3)) and returns an array of strings obtained by
+splitting ’s’ using the character ’c’ as a delimiter.
 The array must end with a NULL pointer.
 s:  The string to be split.
 c:  The delimiter character.
@@ -19,54 +19,76 @@ Return Values: The array of new strings || NULL if the allocation fails.*/
 
 #include "libft.h"
 
-int	ft_count_strings(char const *s, char c)
+static size_t	ft_count_substrings(const char *s, char delimiter)
 {
-	int		check;
 	size_t	count;
+	int		check;
 
 	count = 0;
 	check = 0;
 	while (*s)
 	{
-		if (*s != c && check == 0)
+		if (*s != delimiter)
 		{
-			check = 1;
-			count++;
+			if (!check)
+			{
+				count++;
+				check = 1;
+			}
 		}
-		else if (*s == c && check == 1)
-		{
+		else
 			check = 0;
-		}
 		s++;
 	}
 	return (count);
 }
 
+static void	ft_free_split(char **split, size_t i)
+{
+	while (i > 0)
+	{
+		free(split[--i]);
+	}
+	free(split);
+}
+
+static char	**ft_extract_substrings(const char *s, char c, size_t substr_count)
+{
+	char		**split;
+	const char	*start;
+	size_t		i;
+
+	i = 0;
+	split = (char **)malloc(sizeof(char *) * (substr_count + 1));
+	if (!split || !s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s != c)
+		{
+			start = s;
+			while (*s && *s != c)
+				s++;
+			split[i] = ft_substr(start, 0, s - start);
+			if (!split[i] && (ft_free_split(split, i), 1))
+				return (NULL);
+			i++;
+		}
+		else
+			s++;
+	}
+	split[i] = NULL;
+	return (split);
+}
+
 char	**ft_split(char const *s, char c)
 {
+	size_t	substr_count;
 	char	**split;
-	int		check;
-	size_t	i;
-	size_t	j;
 
-	split = malloc((ft_count_strings(s, c) + 1) * sizeof(char *));
-	if (!s || !split)
+	if (!s)
 		return (NULL);
-	i = 0;
-	j = 0;
-	check = -1;
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] != c && check < 0)
-			check = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && check >= 0)
-		{
-			split[j] = ft_substr(s, check, i - check);
-			check = -1;
-			j++;
-		}
-		i++;
-	}
-	split[j] = 0;
+	substr_count = ft_count_substrings(s, c);
+	split = ft_extract_substrings(s, c, substr_count);
 	return (split);
 }
