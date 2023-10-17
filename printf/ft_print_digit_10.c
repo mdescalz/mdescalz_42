@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:51:01 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/17 12:55:11 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:28:15 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_print_digit_10(long n)
 	if (n >= 10)
 	{
 		count += ft_print_digit_10(n / 10);
+		if (count == -1)
+			return (-1);
 		n = n % 10;
 	}
 	if (n < 10)

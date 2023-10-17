@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:39:50 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/17 18:37:56 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:31:45 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_format_type(char format, va_list *ap)
 		count += ft_print_digit_10((long)(va_arg(*ap, int)));
 	else if (format == 'u')
 		count += ft_print_digit_10((unsigned long)(va_arg(*ap, unsigned int)));
+	else if (format == '%')
+		count += ft_print_char('%');
 	return (count);
 }
 
@@ -34,6 +36,7 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		count;
+	int		temp;
 
 	va_start(ap, format);
 	count = 0;
@@ -41,11 +44,16 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			format++;
-			count += ft_format_type(*format, &ap);
+			count += ft_format_type(*(++format), &ap);
+			if (count == -1)
+				return (-1);
 		}
 		else
-			count += write(1, format, 1);
+		{
+			if (write(1, format, 1) == -1)
+				return (-1);
+			count++;
+		}
 		format++;
 	}
 	va_end(ap);
