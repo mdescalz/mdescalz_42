@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:39:50 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/17 19:31:45 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:41:23 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@ int	ft_format_type(char format, va_list *ap)
 		count += ft_print_char(va_arg(*ap, int));
 	else if (format == 's')
 		count += ft_print_str(va_arg(*ap, char *));
+	else if (format == 'p')
+		count += ft_print_address(va_arg(*ap, void *));
 	else if (format == 'd')
-		count += ft_print_digit_10((long)(va_arg(*ap, int)));
+		count += ft_print_digit_10((va_arg(*ap, int)));
 	else if (format == 'i')
-		count += ft_print_digit_10((long)(va_arg(*ap, int)));
+		count += ft_print_digit_10((va_arg(*ap, int)));
 	else if (format == 'u')
-		count += ft_print_digit_10((unsigned long)(va_arg(*ap, unsigned int)));
+		count += ft_print_digit_10((va_arg(*ap, unsigned int)));
+	else if (format == 'x')
+		count += ft_print_digit_16(((va_arg(*ap, unsigned int))), 1);
+	else if (format == 'X')
+		count += ft_print_digit_16(((va_arg(*ap, unsigned int))), 0);
 	else if (format == '%')
 		count += ft_print_char('%');
 	return (count);
@@ -59,8 +65,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (count);
 }
-
-/*int	main(void)
-{
-	ft_printf("%d", '0');
-}*/

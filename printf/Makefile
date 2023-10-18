@@ -7,6 +7,9 @@ SRCS = 	ft_printf.c  \
 		ft_print_char.c \
 		ft_print_str.c \
 		ft_print_digit_10.c \
+		ft_print_digit_16.c \
+		ft_print_address.c \
+
 
 OBJS = $(SRCS:.c=.o)
 
