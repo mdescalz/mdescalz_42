@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:10:03 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/10/18 16:46:31 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:50:04 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	ft_print_address(void *ptr)
 
 	count = 0;
 	ptr_address = (uintptr_t)ptr;
-    if (!ptr)
-    {
-        if (write(1, "0x0", 3) == -1) 
-            return -1;
-        return (3);
+	if (!ptr)
+	{
+		if (write(1, "0x0", 3) == -1)
+			return (-1);
+		return (3);
 	}
 	count += write(1, "0x", 2);
 	if (count == -1)
