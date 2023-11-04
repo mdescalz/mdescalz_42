@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:11:53 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/04 12:40:30 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/04 20:41:06 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@
 	}
 	return (new_line);
 }*/
+char *ft_realloc(char *static_buffer)
+{
+	char	*new_buffer;
+	size_t	count;
+	size_t	i;
+	
+	count = 0;
+	i = 0;
+	while (static_buffer[count])
+		count++;
+	new_buffer = (char *)malloc((size_t)(count + 1) * 2);
+	if (new_buffer == NULL)
+	{
+		free (static_buffer);
+		return (NULL);
+	}
+	while (static_buffer[i])
+	{
+		new_buffer[i] = static_buffer[i];
+		i++;
+	}
+	return (new_buffer);
+}
 char	*ft_read_chars(int fd, size_t buffer_size, char *static_buffer)
 {
 	char	*local_buffer;
@@ -47,17 +70,14 @@ char	*ft_read_chars(int fd, size_t buffer_size, char *static_buffer)
 	local_buffer = (char *)malloc(buffer_size + 1);
 	if (local_buffer == NULL)
 		return (NULL);
-	i = 0;
-	j = 0;
 	if (static_buffer == NULL) 
 	{
 		static_buffer = (char *)malloc(buffer_size + 1);
-        if (static_buffer == NULL) 
-		{
-            free(local_buffer);
+		if (static_buffer == NULL) 
             return (NULL);
-        }
 	}
+	i = 0;
+	j = 0;
 	while (check == 0)
 	{
 		chars_read = read(fd, local_buffer, buffer_size);
@@ -67,24 +87,22 @@ char	*ft_read_chars(int fd, size_t buffer_size, char *static_buffer)
 			return (NULL);
 		}
 		i = 0;
-		i = 0;
 		while (check == 0 && i < chars_read)
 		{
 			if (local_buffer[i] != '\n')
-			{
-				static_buffer[j] = local_buffer[i]
 				i++;
-				j++;
-			}
-			else if (local_buffer[i] == '\n')
-				check = 1;
 			else
-			{
-				hacer string mas grande!!
 				check = 1;
-			}
-
 		}
+		i = 0;
+		while (i < chars_read)
+		{
+			static_buffer[j] = local_buffer[i];
+			j++;
+			i++;
+		}
+		static_buffer[j] = '\0';
+		static_buffer = ft_realloc(static_buffer);
 	}
 	return (static_buffer);
 }
@@ -92,8 +110,9 @@ char	*ft_read_chars(int fd, size_t buffer_size, char *static_buffer)
 char	*get_next_line(int fd)
 {
 	size_t	buffer_size;
+
+	buffer_size = 1000;
 	static char *static_buffer = NULL;
-	buffer_size = 5;
 	if (fd < 0)
 		return (NULL);
 	return (ft_read_chars(fd, buffer_size, static_buffer));
@@ -104,10 +123,6 @@ int	main(void)
 	int	fd1;
 
 	fd1 = open("file.txt", O_RDONLY);
-	printf("%s", get_next_line(fd1));
-	printf("%s", get_next_line(fd1));
-	printf("%s", get_next_line(fd1));
-	printf("%s", get_next_line(fd1));
 	printf("%s", get_next_line(fd1));
 	close(fd1);
 }
