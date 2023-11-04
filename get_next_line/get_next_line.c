@@ -6,13 +6,13 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:11:53 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/03 14:17:40 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/04 12:40:30 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_extract_line(char *local_buffer, size_t buffer_size)
+/*char	*ft_extract_line(char *local_buffer, size_t buffer_size)
 {
 	size_t	i;
 	size_t	check;
@@ -34,38 +34,69 @@ char	*ft_extract_line(char *local_buffer, size_t buffer_size)
 			i++;
 	}
 	return (new_line);
-}
-char	*ft_read_chars(int fd, size_t buffer_size)
+}*/
+char	*ft_read_chars(int fd, size_t buffer_size, char *static_buffer)
 {
 	char	*local_buffer;
 	size_t	chars_read;
 	size_t	i;
+	size_t	j;
+	size_t	check;
 
+	check = 0;
 	local_buffer = (char *)malloc(buffer_size + 1);
 	if (local_buffer == NULL)
 		return (NULL);
 	i = 0;
-	chars_read = read(fd, local_buffer, buffer_size);
-	if (chars_read <= 0)
+	j = 0;
+	if (static_buffer == NULL) 
 	{
-		free(local_buffer);
-		return (NULL);
+		static_buffer = (char *)malloc(buffer_size + 1);
+        if (static_buffer == NULL) 
+		{
+            free(local_buffer);
+            return (NULL);
+        }
 	}
-	local_buffer[chars_read] = '\0';
-	return (ft_extract_line(local_buffer, buffer_size));
+	while (check == 0)
+	{
+		chars_read = read(fd, local_buffer, buffer_size);
+		if (chars_read <= 0)
+		{
+			free(local_buffer);
+			return (NULL);
+		}
+		i = 0;
+		i = 0;
+		while (check == 0 && i < chars_read)
+		{
+			if (local_buffer[i] != '\n')
+			{
+				static_buffer[j] = local_buffer[i]
+				i++;
+				j++;
+			}
+			else if (local_buffer[i] == '\n')
+				check = 1;
+			else
+			{
+				hacer string mas grande!!
+				check = 1;
+			}
+
+		}
+	}
+	return (static_buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	size_t	buffer_size;
-
-	// static char	*static_buffer;
-	buffer_size = 10;
-	// static_buffer = (static char *)static_buffer(buffer_size + 1)
+	static char *static_buffer = NULL;
+	buffer_size = 5;
 	if (fd < 0)
 		return (NULL);
-	if (ft_read_chars(fd, buffer_size))
-	
+	return (ft_read_chars(fd, buffer_size, static_buffer));
 }
 
 int	main(void)
@@ -73,7 +104,11 @@ int	main(void)
 	int	fd1;
 
 	fd1 = open("file.txt", O_RDONLY);
-	printf("%s\n", get_next_line(fd1));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd1));
 	close(fd1);
 }
 

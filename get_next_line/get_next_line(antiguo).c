@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:13:05 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/03 14:18:19 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:26:36 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*check_buffer(int fd, char *buffer, size_t buffer_size)
 	new_line = ft_new_line(buffer, buffer_size);
 	if (new_line == NULL)
 	{
-		free(new_line)
+		free(new_line);
 		return(NULL);
 	}
 	while (check == 0)

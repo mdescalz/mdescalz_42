@@ -7,7 +7,7 @@ SRC_FILES = get_next_line.c\
 OBJECTS_SRC_FILES = $(SRC_FILES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 AR = ar rcs
 

@@ -6,12 +6,30 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:13:07 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/03 13:34:55 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:26:17 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_strchr(const char *str, int character)
+{
+	char	*ptr;
+	char	c;
+
+	ptr = (char *)str;
+	c = (char)character;
+	while (*ptr)
+	{
+		if (*ptr == c)
+			return (ptr);
+		else
+			ptr++;
+	}
+	if (*ptr == c)
+		return (ptr);
+	return (NULL);
+}
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
