@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:11:53 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/06 14:31:14 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:00:48 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 char	*ft_extract_line(char *static_buffer)
 {
-	size_t	count;
 	size_t	i;
 	char	*line;
 
-	count = 0;
 	i = 0;
 	line = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (line == NULL)
@@ -126,7 +124,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int	fd;
 	char *line;
@@ -140,4 +138,4 @@ char	*get_next_line(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-}*/
+}
