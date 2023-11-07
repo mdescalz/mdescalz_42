@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:11:53 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/06 14:31:14 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:14:39 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ char	*ft_extract_line(char *static_buffer)
 	i = 0;
 	line = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (line == NULL)
+	{
+		free (static_buffer);
 		return (NULL);
+	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
 	{
 		line[i] = static_buffer[i];
@@ -46,6 +49,11 @@ char	*update_buffer(char *static_buffer)
 	i = 0;
 	j = 0;
 	new_buffer = (char *)malloc(ft_strlen(static_buffer) + 1);
+	if (new_buffer == NULL)
+	{
+		free (static_buffer);
+		return (NULL);
+	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
 		i++;
 	if (static_buffer[i] == '\n')
@@ -57,6 +65,7 @@ char	*update_buffer(char *static_buffer)
 		j++;
 	}
 	new_buffer[j] = '\0';
+	free (static_buffer);
 	return (new_buffer);
 }
 
@@ -68,13 +77,18 @@ char	*ft_read_chars(int fd, char *static_buffer)
 	chars_read = 1;
 	local_buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (local_buffer == NULL)
+	{
+		free (local_buffer);
+		free (static_buffer);
 		return (NULL);
+	}
 	while (chars_read > 0)
 	{
 		chars_read = read(fd, local_buffer, BUFFER_SIZE);
 		if (chars_read < 0)
 		{
 			free(local_buffer);
+			free (static_buffer);
 			return (NULL);
 		}
 		else if (chars_read > 0)
@@ -83,6 +97,7 @@ char	*ft_read_chars(int fd, char *static_buffer)
 			static_buffer = ft_strjoin(static_buffer, local_buffer);
 		}
 	}
+	free (local_buffer);
 	return (static_buffer);
 }
 
@@ -109,13 +124,19 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		free (static_buffer);
 		return (NULL);
+	}
 	static_buffer = ft_read_chars(fd, static_buffer);
 	if (!static_buffer)
 		return (NULL);
 	line = ft_extract_line(static_buffer);
 	if (line == NULL)
+	{
+		free (static_buffer);
 		return (NULL);
+	}
 	static_buffer = update_buffer(static_buffer);
 	if (!line[0] && !static_buffer[0])
 	{
