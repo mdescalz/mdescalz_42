@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:13:02 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/06 14:30:38 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:59:26 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 100
 # endif
 
 char	*get_next_line(int fd);
