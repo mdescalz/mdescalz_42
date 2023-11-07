@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/07 12:52:58 by mdescalz          #+#    #+#             */
+/*   Updated: 2023/11/07 13:32:08 by mdescalz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_extract_line(char *static_buffer)
 {
-	size_t	count;
 	size_t	i;
 	char	*line;
 
-	count = 0;
 	i = 0;
 	line = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (line == NULL)
@@ -66,7 +76,6 @@ char	*ft_read_chars(int fd, char *static_buffer)
 	local_buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (local_buffer == NULL)
 	{
-		free (local_buffer);
 		free (static_buffer);
 		return (NULL);
 	}
@@ -89,38 +98,25 @@ char	*ft_read_chars(int fd, char *static_buffer)
 	return (static_buffer);
 }
 
-/*char	*get_next_line(int fd)
-{
-	char	*line;
-	
-	static char *static_buffer = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	static_buffer = ft_read_chars(fd, static_buffer);
-	line = ft_extract_line(static_buffer);
-	if (line == NULL)
-	{
-		printf("Hola");
-		return (NULL);
-	}
-	static_buffer = update_buffer(static_buffer);
-	return (line);
-}*/
 char	*get_next_line(int fd)
 {
 	static char	*static_buffer = NULL;
-	char		*line;
+	char		*line = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free (static_buffer);
+		free (line);
 		return (NULL);
 	}
 	static_buffer = ft_read_chars(fd, static_buffer);
 	if (!static_buffer)
+	{
+		free(line);
 		return (NULL);
+	}
 	line = ft_extract_line(static_buffer);
-	if (line == NULL)
+	if (!line)
 	{
 		free (static_buffer);
 		return (NULL);
@@ -149,4 +145,22 @@ char	*get_next_line(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
+}*/
+
+/*char	*get_next_line(int fd)
+{
+	char	*line;
+	
+	static char *static_buffer = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	static_buffer = ft_read_chars(fd, static_buffer);
+	line = ft_extract_line(static_buffer);
+	if (line == NULL)
+	{
+		printf("Hola");
+		return (NULL);
+	}
+	static_buffer = update_buffer(static_buffer);
+	return (line);
 }*/
