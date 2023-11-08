@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:52:58 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/08 14:42:10 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:57:42 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,28 +74,22 @@ char	*ft_read_chars(int fd, char *static_buffer)
 	char	*local_buffer;
 	int		chars_read;
 	char	*temp_buffer;
-
+	
 	chars_read = 1;
-	local_buffer = (char *)malloc((BUFFER_SIZE + 1)* sizeof(char));
+	local_buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (local_buffer == NULL)
-	{
-		free(static_buffer);
-		return (NULL);
-	}
+		return (free(static_buffer), NULL);
 	while (chars_read > 0)
 	{
 		chars_read = read(fd, local_buffer, BUFFER_SIZE);
 		if (chars_read < 0)
-			return (free(local_buffer),free(static_buffer), NULL);
+			return (free(local_buffer), free(static_buffer), NULL);
 		else if (chars_read > 0)
 		{
 			local_buffer[chars_read] = '\0';
 			temp_buffer = ft_strjoin(static_buffer, local_buffer);
 			if (!temp_buffer)
-			{
-				free(local_buffer);
-				return (NULL);
-			}
+				return (free(local_buffer), NULL);
 			else
 			{
 				free(static_buffer);
@@ -110,20 +104,19 @@ char	*ft_read_chars(int fd, char *static_buffer)
 char	*get_next_line(int fd)
 {
 	static char	*static_buffer = NULL;
-	char		*line = NULL;
-	
+	char		*line;
+
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	static_buffer = ft_read_chars(fd, static_buffer);
 	if (!static_buffer)
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
 	line = ft_extract_line(static_buffer);
 	if (!line)
 	{
 		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
 	static_buffer = update_buffer(static_buffer);
@@ -131,6 +124,7 @@ char	*get_next_line(int fd)
 	{
 		free(line);
 		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
 	return (line);

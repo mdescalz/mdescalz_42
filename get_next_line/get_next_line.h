@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:13:02 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/06 16:59:26 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:41:33 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*get_next_line(int fd);
 
 char	*ft_read_chars(int fd, char *static_buffer);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *str);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
