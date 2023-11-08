@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:52:58 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/07 13:32:08 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:42:10 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ char	*ft_extract_line(char *static_buffer)
 	char	*line;
 
 	i = 0;
+	if (static_buffer == NULL)
+		return (NULL);
 	line = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (line == NULL)
 	{
-		free (static_buffer);
+		free(static_buffer);
 		return (NULL);
 	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
@@ -49,7 +51,7 @@ char	*update_buffer(char *static_buffer)
 	new_buffer = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (new_buffer == NULL)
 	{
-		free (static_buffer);
+		free(static_buffer);
 		return (NULL);
 	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
@@ -63,38 +65,45 @@ char	*update_buffer(char *static_buffer)
 		j++;
 	}
 	new_buffer[j] = '\0';
-	free (static_buffer);
+	free(static_buffer);
 	return (new_buffer);
 }
 
 char	*ft_read_chars(int fd, char *static_buffer)
 {
 	char	*local_buffer;
-	size_t	chars_read;
+	int		chars_read;
+	char	*temp_buffer;
 
 	chars_read = 1;
-	local_buffer = (char *)malloc(BUFFER_SIZE + 1);
+	local_buffer = (char *)malloc((BUFFER_SIZE + 1)* sizeof(char));
 	if (local_buffer == NULL)
 	{
-		free (static_buffer);
+		free(static_buffer);
 		return (NULL);
 	}
 	while (chars_read > 0)
 	{
 		chars_read = read(fd, local_buffer, BUFFER_SIZE);
 		if (chars_read < 0)
-		{
-			free(local_buffer);
-			free (static_buffer);
-			return (NULL);
-		}
+			return (free(local_buffer),free(static_buffer), NULL);
 		else if (chars_read > 0)
 		{
 			local_buffer[chars_read] = '\0';
-			static_buffer = ft_strjoin(static_buffer, local_buffer);
+			temp_buffer = ft_strjoin(static_buffer, local_buffer);
+			if (!temp_buffer)
+			{
+				free(local_buffer);
+				return (NULL);
+			}
+			else
+			{
+				free(static_buffer);
+				static_buffer = temp_buffer;
+			}
 		}
 	}
-	free (local_buffer);
+	free(local_buffer);
 	return (static_buffer);
 }
 
@@ -102,13 +111,9 @@ char	*get_next_line(int fd)
 {
 	static char	*static_buffer = NULL;
 	char		*line = NULL;
-
+	
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		free (static_buffer);
-		free (line);
 		return (NULL);
-	}
 	static_buffer = ft_read_chars(fd, static_buffer);
 	if (!static_buffer)
 	{
@@ -118,7 +123,7 @@ char	*get_next_line(int fd)
 	line = ft_extract_line(static_buffer);
 	if (!line)
 	{
-		free (static_buffer);
+		free(static_buffer);
 		return (NULL);
 	}
 	static_buffer = update_buffer(static_buffer);
@@ -135,7 +140,7 @@ char	*get_next_line(int fd)
 {
 	int	fd;
 	char *line;
-	
+
 	fd = open("file.txt", O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
@@ -150,7 +155,7 @@ char	*get_next_line(int fd)
 /*char	*get_next_line(int fd)
 {
 	char	*line;
-	
+
 	static char *static_buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
