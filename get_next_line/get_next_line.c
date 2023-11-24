@@ -6,7 +6,7 @@
 /*   By: mdescalz <mdescalz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:52:58 by mdescalz          #+#    #+#             */
-/*   Updated: 2023/11/08 15:57:42 by mdescalz         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:03:57 by mdescalz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*ft_extract_line(char *static_buffer)
 	if (line == NULL)
 	{
 		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
@@ -48,10 +49,13 @@ char	*update_buffer(char *static_buffer)
 
 	i = 0;
 	j = 0;
+	if (static_buffer == NULL)
+		return (NULL);
 	new_buffer = (char *)malloc(ft_strlen(static_buffer) + 1);
 	if (new_buffer == NULL)
 	{
 		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
 	while (static_buffer[i] != '\n' && static_buffer[i] != '\0')
@@ -74,22 +78,34 @@ char	*ft_read_chars(int fd, char *static_buffer)
 	char	*local_buffer;
 	int		chars_read;
 	char	*temp_buffer;
-	
+
 	chars_read = 1;
 	local_buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (local_buffer == NULL)
-		return (free(static_buffer), NULL);
+	{
+		free(static_buffer);
+		static_buffer = NULL;
+		return (NULL);
+	}
 	while (chars_read > 0)
 	{
 		chars_read = read(fd, local_buffer, BUFFER_SIZE);
 		if (chars_read < 0)
-			return (free(local_buffer), free(static_buffer), NULL);
+		{
+			free(local_buffer); 
+			free(static_buffer);
+			static_buffer = NULL;
+			return (NULL);
+		}
 		else if (chars_read > 0)
 		{
 			local_buffer[chars_read] = '\0';
 			temp_buffer = ft_strjoin(static_buffer, local_buffer);
 			if (!temp_buffer)
-				return (free(local_buffer), NULL);
+			{
+				free(local_buffer);
+				return (NULL);
+			}
 			else
 			{
 				free(static_buffer);
@@ -111,7 +127,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	static_buffer = ft_read_chars(fd, static_buffer);
 	if (!static_buffer)
-		return (free(line), NULL);
+		return (NULL);
 	line = ft_extract_line(static_buffer);
 	if (!line)
 	{
@@ -120,6 +136,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	static_buffer = update_buffer(static_buffer);
+	if (!static_buffer)
+		return (NULL);
 	if (!line[0] && !static_buffer[0])
 	{
 		free(line);
